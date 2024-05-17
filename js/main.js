@@ -1,21 +1,41 @@
-class Productos {
-    constructor(nombre, stock, precio){
-        this.nombre = nombre;
-        this.stock = stock;
-        this.precio = precio;
-    }
-}; 
-
-const vino = new Productos("Vino", 10, 2000);
-const cerveza = new Productos("Cerveza", 10, 1000);
-const gin = new Productos("Gin", 10, 20000);
-const fernet = new Productos("Fernet", 10, 7000);
-
-function calculadorEntradas(cantidad, precio) {
-    return cantidad * precio;
-};
+//! array de productos 
+const productos = [
+    { id:"cerveza",
+    titulo: "cerveza",
+    imagen: "https://media.tada.com.ar/produc_variant/00001872_e3c47f21-781c-4e55-9956-6ea13d56c7c9.jpg",
+    categoria: {
+        id: "cerveza"
+    },
+    precio: 1000
+    }, 
+    { id:"vino",
+    titulo: "vino",
+    imagen: "https://media.tada.com.ar/produc_variant/00001872_e3c47f21-781c-4e55-9956-6ea13d56c7c9.jpg",
+    categoria: {
+        id: "vino"
+    },
+    precio: 2000
+    }, 
+    { id:"gin",
+    titulo: "gin",
+    imagen: "https://media.tada.com.ar/produc_variant/00001872_e3c47f21-781c-4e55-9956-6ea13d56c7c9.jpg",
+    categoria: {
+        id: "gin"
+    },
+    precio: 20000
+    }, 
+    { id:"fernet",
+    titulo: "fernet",
+    imagen: "https://media.tada.com.ar/produc_variant/00001872_e3c47f21-781c-4e55-9956-6ea13d56c7c9.jpg",
+    categoria: {
+        id: "fernet"
+    },
+    precio: 7000
+    }, 
+]
 
 let usuario;
+//! loop para saber que bebida
 do{
    usuario = prompt("Ingrese su nombre");
 } while (usuario === "");
@@ -27,21 +47,14 @@ let bebida = prompt("¿Qué productos queres comprar? Puedes elegir entre vino, 
 
 let cantidadProductos= prompt("¿Cuantas unidades queres comprar?");
 
+//! funcion para calcular los precios de cada producto
+function calcularPrecio(nombre, cantidad) {
+    let user = productos.find(producto => producto.id === nombre);
+    alert(`hola ${usuario} acabas de comprar ${cantidadProductos}  ${user.titulo} (${user.precio} x unidad) al precio total de $ ${user.precio * cantidad}.`);
+}
 
-switch(bebida.toLocaleLowerCase()) {
-    case "vino" :
-        alert("El monto total por el/los vinos" +" ("+ cantidadProductos + " unidad/es" + ") " + "es de $"+ calculadorEntradas(cantidadProductos, 2000) +  ". Muchas gracias " + usuario.toUpperCase() + " por su compra.")
-    break
-    case "cerveza" :
-        alert("El monto total por la/s cerveza/s" +" ("+ cantidadProductos + " unidad/es" + ") " + "es de $"+ calculadorEntradas(cantidadProductos, 1000) +  ". Muchas gracias " + usuario.toUpperCase() + " por su compra.")
-    break
-    case "gin" :
-        alert("El monto total por el/los gin/es" +" ("+ cantidadProductos + " unidad/es" + ") " + "es de $"+ calculadorEntradas(cantidadProductos, 20000) +  ". Muchas gracias " + usuario.toUpperCase() + " por su compra.")
-    break
-    case "fernet" :
-        alert("El monto total por el/los fernet" +" ("+ cantidadProductos + " unidad7es" + ") " + "es de $"+ calculadorEntradas(cantidadProductos, 7000) +  ". Muchas gracias " + usuario.toUpperCase() + " por su compra.")
-    break
-} 
+//! llamado a la funcion
+calcularPrecio(bebida, cantidadProductos)
 
 } else {
     alert("Eres menor de edad, No puedes realizar la compra.")
